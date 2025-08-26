@@ -1,0 +1,1 @@
+{"version":3,"file":"score_scene.d.ts","sourceRoot":"","sources":["score_scene.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,SAAS,EAAE,MAAM,cAAc,CAAC;AAEzC,cAAM,UAAW,SAAQ,SAAS;IAC9B,IAAI,MAAM,IAAI;QAAE,IAAI,EAAE,MAAM,CAAC;QAAC,KAAK,EAAE,MAAM,CAAA;KAAE,EAAE,CAE9C;gBACW,MAAM,EAAE,GAAG;IAIvB,MAAM;CAuBT;AAED,eAAe,UAAU,CAAC"}

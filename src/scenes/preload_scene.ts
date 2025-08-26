@@ -1,0 +1,45 @@
+import 'phaser'
+import BirdGameConfig from '../core/game_config'
+
+export class PreloadScene extends Phaser.Scene {
+    constructor() {
+        super(BirdGameConfig.SCENE_KEYS.PreloadScene)
+    }
+
+    preload() {
+        let  fnt = new FontFace('title-fnt', 'url(assets/title-fnt.ttf')
+        fnt.load().then((lf: any) => {
+            document.fonts.add(lf)
+        });
+
+        fnt = new FontFace('score-fnt', 'url(assets/score.ttf')
+        fnt.load().then((lf: any) => {
+            document.fonts.add(lf)
+        });
+
+        this.add.text(this.scale.width / 2, this.scale.height / 2, 'Loading...', { fontFamily: 'menu-fnt' })
+            .setOrigin(0.5)
+        this.load.image('sky', 'assets/sky.png')
+        this.load.spritesheet('bird', 'assets/birdSprite.png', {
+            frameWidth: 16, frameHeight: 16
+        })
+        this.load.image('pipe', 'assets/pipe.png')
+        this.load.image('pause', 'assets/pause.png')
+        this.load.image('back', 'assets/back.png')
+        this.load.image('clouds1-bkg', 'assets/clouds1.png')
+        this.load.image('clouds2-bkg', 'assets/clouds2.png')
+        this.load.image('tree', 'assets/tree4.png')
+
+        this.load.audio('menu-song', 'assets/RoadhouseBlues_out.ogg')
+
+        this.load.on(Phaser.Loader.Events.COMPLETE, () => {
+            this.scene.start(BirdGameConfig.SCENE_KEYS.MenuScene)
+        })
+
+    }
+
+    create() {
+        this.add.text(this.scale.width / 2, this.scale.height / 2, 'Loading...')
+    }
+
+}
