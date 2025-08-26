@@ -1,1 +1,0 @@
-{"version":3,"file":"pause_scene.d.ts","sourceRoot":"","sources":["pause_scene.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,SAAS,EAAE,MAAM,cAAc,CAAC;AACzC,qBAAa,UAAW,SAAQ,SAAS;IACrC,IAAI,EAAE;QAAE,KAAK,EAAE,MAAM,CAAC;QAAC,IAAI,EAAE,MAAM,CAAC;KAAE,EAAE,CAAC;gBAE7B,MAAM,EAAE,GAAG;IASvB,MAAM;IAKN,eAAe,CAAC,QAAQ,EAAE,GAAG;CAwBhC"}

@@ -25,6 +25,7 @@ export class BaseScene extends Phaser.Scene {
 
             backButton.on(Phaser.Input.Events.POINTER_UP, () => {
                 this.scene.start(BirdGameConfig.SCENE_KEYS.MenuScene)
+                this.scene.stop(BirdGameConfig.SCENE_KEYS.PlayScene)
             })
         }
     }

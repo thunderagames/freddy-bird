@@ -129,17 +129,10 @@ export class PlayScene extends BaseScene {
 
         if (!this.isPaused) {
             this.isPaused = true
-            this.scene.launch(BirdGameConfig.SCENE_KEYS.SaveScoreScene)
+            
+            const scn = this.scene.launch(BirdGameConfig.SCENE_KEYS.SaveScoreScene)
+            
         }
-
-
-        // this.time.addEvent({
-        //     delay: 1000,
-        //     callback: () => {
-        //         this.scene.restart();
-        //     },
-        //     loop: false
-        // })
     }
 
     createPause() {

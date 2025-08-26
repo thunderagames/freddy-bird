@@ -43,6 +43,7 @@ export class SaveScoreScene extends Phaser.Scene {
             val.push({ name: (<any>inpt.getChildByID("name")).value, score: this.game.registry.get('score') })
             this.scores = val;
             this.scene.stop(BirdGameConfig.SCENE_KEYS.SaveScoreScene);
+            this.game.scene.start(BirdGameConfig.SCENE_KEYS.ScoreScene)
 
         })
     }
