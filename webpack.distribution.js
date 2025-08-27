@@ -25,7 +25,8 @@ module.exports = {
  
         // here we clean the destination folder
         new CleanWebpackPlugin({
-            cleanStaleWebpackAssets: false
+            cleanStaleWebpackAssets: true,
+            
         }),
  
         // here we copy some files to destination folder.

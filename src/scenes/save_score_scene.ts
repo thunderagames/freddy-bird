@@ -13,11 +13,42 @@ export class SaveScoreScene extends Phaser.Scene {
         localStorage.setItem('scores_list', JSON.stringify(value))
     }
 
+    get currentScore(): number {
+        return this.game.registry.get('score')
+    }
+
     constructor() {
         super(BirdGameConfig.SCENE_KEYS.SaveScoreScene)
     }
 
     create() {
+
+
+        if (this.currentScore == 0) {
+            this.resetGame(BirdGameConfig.SCENE_KEYS.MenuScene)
+            return
+        }
+
+        let _sc = [...this.scores]
+        //if the score array has less tha 10 socres, save it
+        if (_sc.length < 10) {
+            this.createForm()
+        } else {
+            //validate if the new score is greater than any of the existent 10, and replace it
+            _sc.sort((a, b) => a.score - b.score)
+            const min_score = _sc[0]
+            if ((min_score?.score ?? 0) < this.currentScore) {
+                _sc.splice(0, 1)
+                this.scores = _sc
+                this.createForm()
+            } else {
+                this.resetGame(BirdGameConfig.SCENE_KEYS.MenuScene)
+                return
+            }
+        }
+    }
+
+    private createForm() {
         this.add.text(this.scale.width / 2, this.scale.height / 4, 'Save Score',
             {
                 fontFamily: 'title-fnt',
@@ -42,10 +73,14 @@ export class SaveScoreScene extends Phaser.Scene {
             let val = this.scores;
             val.push({ name: (<any>inpt.getChildByID("name")).value, score: this.game.registry.get('score') })
             this.scores = val;
-            this.scene.stop(BirdGameConfig.SCENE_KEYS.SaveScoreScene);
-            this.game.scene.start(BirdGameConfig.SCENE_KEYS.ScoreScene)
-
+            this.resetGame(BirdGameConfig.SCENE_KEYS.ScoreScene)
         })
+    }
+
+    private resetGame(nextSceneKey: string): void {
+        this.scene.stop(BirdGameConfig.SCENE_KEYS.SaveScoreScene);
+        this.scene.stop(BirdGameConfig.SCENE_KEYS.PlayScene);
+        this.game.scene.start(nextSceneKey)
     }
 
 }

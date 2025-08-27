@@ -16,7 +16,6 @@ export class MenuScene extends BaseScene {
             { scene: scene_keys.PlayScene, text: 'Play' },
             { scene: scene_keys.ScoreScene, text: 'Score' },
             { scene: scene_keys.SaveScoreScene, text: 'Config' },
-            { scene: null, text: 'Exit' }
         ]
     }
 
@@ -34,30 +33,32 @@ export class MenuScene extends BaseScene {
 
         this.createMenu(this.menu, this.setupMenuEvents.bind(this))
         this.sound.volume = 0.08
-        
+
         this.sound.stopAll()
         this.sound.play('menu-song')
         this.bkg1 = this.add.tileSprite(0, this.scale.height / 5, this.scale.width, this.scale.height, 'clouds1-bkg')
             .setOrigin(0, 0)
             .setDepth(4)
         this.bkg1.setScale(1.5, 1.5)
-        this.anims.create({
-            key: 'eat',
-            frames: this.anims.generateFrameNumbers('bird', { start: 16, end: 18 }),
-            frameRate: 6,
-            yoyo: true,
 
-        });
+        if (!this.anims.exists('eat'))
+            this.anims.create({
+                key: 'eat',
+                frames: this.anims.generateFrameNumbers('bird', { start: 16, end: 18 }),
+                frameRate: 6,
+                yoyo: true,
 
-        this.anims.create({
-            key: 'fly',
-            frames: this.anims.generateFrameNumbers('bird', { start: 9, end: 15 }),
-            frameRate: 8,
-            repeat: -1,
-            yoyo: true
-        })
+            });
+        if (!this.anims.exists('fly'))
+            this.anims.create({
+                key: 'fly',
+                frames: this.anims.generateFrameNumbers('bird', { start: 9, end: 15 }),
+                frameRate: 8,
+                repeat: -1,
+                yoyo: true
+            })
 
-        this.add.rectangle(this.scale.width / 2, this.scale.height / 2 + 60, 230, 250, 0x000, 0.3)
+        this.add.rectangle(this.scale.width / 2, this.scale.height / 2 + 45, 230, 200, 0x000, 0.3)
             .setOrigin(0.5)
             .setRounded(10)
             .setDepth(9)
@@ -72,7 +73,6 @@ export class MenuScene extends BaseScene {
 
         this.bird = this.add.sprite(this.scale.width - 65, 150, 'bird')
             .setScale(3)
-            //.play('eat')
             .setOrigin(0.5, 1)
             .setDepth(10)
 

@@ -5,6 +5,11 @@ class ScoreScene extends BaseScene {
     get scores(): { name: string, score: number }[] {
         return JSON.parse(localStorage.getItem('scores_list') ?? '[]')
     }
+
+    set scores(value: { name: string, score: number }[]) {
+        localStorage.setItem('scores_list', JSON.stringify(value))
+    }
+
     constructor(config: any) {
         super(BirdGameConfig.SCENE_KEYS.ScoreScene, { ...config, canGoBack: true });
     }
@@ -15,8 +20,9 @@ class ScoreScene extends BaseScene {
         this.add.text(this.scale.width / 2, y - 50, 'TOP TEN SCORES',
             { fontSize: '26px', fontFamily: 'menu-fnt' })
             .setOrigin(0.5)
-
-        this.scores.forEach(x => {
+        let _sc = [...this.scores]
+        _sc.sort((a, b) => b.score - a.score)
+        _sc.forEach((x, i) => {
             this.add.text(this.scale.width / 4, y, `${x.name}: ${x.score || 0}`,
                 {
                     fontSize: '18px', fontFamily: 'menu-fnt', shadow:

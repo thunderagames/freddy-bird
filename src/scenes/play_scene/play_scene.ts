@@ -10,7 +10,7 @@ export class PlayScene extends BaseScene {
     pipes: Phaser.Physics.Arcade.Group;
     pipes_speed = 100
     isPaused = false
-    pipeHorizontalDistance = 0
+    //pipeHorizontalDistance = 0
     flapVelocity = 300
     currentDifficulty = `${BirdGameConfig.DIFICULTIES.easy}`
     bird: any;
@@ -61,13 +61,13 @@ export class PlayScene extends BaseScene {
         this.createPause()
         this.handleInputs()
         this.listenToEvents()
-
-        this.anims.create({
-            key: 'fly',
-            frames: this.anims.generateFrameNumbers('bird', { start: 9, end: 15 }),
-            frameRate: 8,
-            repeat: -1
-        })
+        if (!this.anims.exists('fly'))
+            this.anims.create({
+                key: 'fly',
+                frames: this.anims.generateFrameNumbers('bird', { start: 9, end: 15 }),
+                frameRate: 8,
+                repeat: -1
+            })
 
 
         this.bkg1 = this.add.tileSprite(0, 0, this.scale.width, this.scale.height / 2, 'clouds2-bkg')
@@ -129,9 +129,9 @@ export class PlayScene extends BaseScene {
 
         if (!this.isPaused) {
             this.isPaused = true
-            
+
             const scn = this.scene.launch(BirdGameConfig.SCENE_KEYS.SaveScoreScene)
-            
+
         }
     }
 

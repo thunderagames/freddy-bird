@@ -27,11 +27,7 @@ export class ScoreManager {
     }
 
     createScore(scene: Phaser.Scene) {
-        let scoreValue: any[] = []
-        scene.game.registry.set('score', JSON.stringify(scoreValue));
         this.score = 0
-
-        //const bestScore = localStorage.getItem(BirdGameConfig.STORAGE_KEY);
         this.scoreText =
             this.scene.add.text(16, 16, ` Score: ${0} `,
                 {
@@ -40,6 +36,7 @@ export class ScoreManager {
                     fontFamily: 'score-fnt'
                 })
                 .setDepth(8);
+                
         this.bestScoreText =
             this.scene.add.text(16, 80, `Best score: ${this.bestScore || 0}`,
                 {
