@@ -15,7 +15,7 @@ export class MenuScene extends BaseScene {
         this.menu = [
             { scene: scene_keys.PlayScene, text: 'Play' },
             { scene: scene_keys.ScoreScene, text: 'Score' },
-            { scene: scene_keys.SaveScoreScene, text: 'Config' },
+            { scene: scene_keys.ConfigScene, text: 'Config' },
         ]
     }
 
@@ -116,5 +116,7 @@ export class MenuScene extends BaseScene {
             this.flyingBird.setAlpha(Phaser.Math.FloatBetween(0.2, 0.8))
             this.flyingBird.setScale(Phaser.Math.FloatBetween(1, 1.5))
         }
+
+        super.update()
     }
 }

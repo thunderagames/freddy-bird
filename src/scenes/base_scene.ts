@@ -1,5 +1,6 @@
 import 'phaser'
 import BirdGameConfig from '../core/game_config';
+import { GameUserConfiguration } from '../core/game_user_configuration';
 
 export class BaseScene extends Phaser.Scene {
     config: any;
@@ -7,6 +8,7 @@ export class BaseScene extends Phaser.Scene {
     fontSize = 34;
     lineHeight = 55;
     fontOptions: any = {}
+    user_config: { [key: string]: any; };
 
     constructor(key: string, config: any) {
         super(key)
@@ -16,6 +18,12 @@ export class BaseScene extends Phaser.Scene {
     }
 
     create() {
+        this.user_config = new GameUserConfiguration(this.game).get_config()
+
+        // if (!user_config.get_config()[BirdGameConfig.CONFIG_KEYS.music_is_enabled]){
+        //     this.sound.stopAll()
+        // }
+
         this.add.image(0, 0, 'sky').setOrigin(0)
         if (this.config?.canGoBack ?? false) {
             const backButton = this.add.image(this.config.width - 10, this.config.height - 10, 'back')
@@ -27,6 +35,12 @@ export class BaseScene extends Phaser.Scene {
                 this.scene.start(BirdGameConfig.SCENE_KEYS.MenuScene)
                 this.scene.stop(BirdGameConfig.SCENE_KEYS.PlayScene)
             })
+        }
+    }
+
+    update() {
+        if (this.sound.isPlaying(undefined) && !this.user_config[BirdGameConfig.CONFIG_KEYS.music_is_enabled]) {
+            this.sound.stopAll()
         }
     }
 
