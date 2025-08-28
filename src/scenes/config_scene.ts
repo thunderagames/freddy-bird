@@ -4,7 +4,7 @@ import { BaseScene } from './base_scene'
 import { GameUserConfiguration } from '../core/game_user_configuration'
 
 export class ConfigScene extends BaseScene {
-    
+
     constructor(config: any) {
         super(BirdGameConfig.SCENE_KEYS.ConfigScene, { ...config, canGoBack: true })
 
@@ -14,14 +14,17 @@ export class ConfigScene extends BaseScene {
     create() {
         super.create();
         this.user_config = new GameUserConfiguration(this.game)
+        this.createMusicConfig()
+    }
 
+    private createMusicConfig(): void {
         const center_screen = BirdGameConfig.getSceneCenter(this)
         const isChecked = this.user_config.get_config()[BirdGameConfig.CONFIG_KEYS.music_is_enabled] ?? false
 
         const check = document.createElement('input')
         check.type = "checkbox"
         if (isChecked) {
-            check.setAttribute('checked','')
+            check.setAttribute('checked', '')
         }
 
         check.id = "enable_music"
@@ -44,7 +47,5 @@ export class ConfigScene extends BaseScene {
             const is_checked = (<any>audio_checkbox.getChildByID('enable_music')).checked;
             this.user_config.set_config(BirdGameConfig.CONFIG_KEYS.music_is_enabled, is_checked)
         })
-
-
     }
 }

@@ -13,8 +13,13 @@ export class GameUserConfiguration {
 
     get_config(): { [key: string]: any } {
         let config: { [key: string]: any } = {}
-
-        config[BirdGameConfig.CONFIG_KEYS.music_is_enabled] = this.get_config_value(BirdGameConfig.CONFIG_KEYS.music_is_enabled);
+        for (const key in BirdGameConfig.CONFIG_KEYS) {
+            if (this.game.registry.get(key)) {
+                config[key] = this.game.registry.get(key)
+            }
+        }
+        config[BirdGameConfig.CONFIG_KEYS.music_is_enabled] =
+            this.get_config_value(BirdGameConfig.CONFIG_KEYS.music_is_enabled);
 
         return config
     }
@@ -22,5 +27,10 @@ export class GameUserConfiguration {
 
     set_config(configKey: string, value: any) {
         this.game.registry.set(configKey, value);
+    }
+
+    load_default_values(): void {
+        this.set_config(BirdGameConfig.CONFIG_KEYS.music_is_enabled, false)
+        this.set_config(BirdGameConfig.CONFIG_KEYS.lang, 'en')
     }
 }

@@ -1,0 +1,12 @@
+{
+    "translations": {
+        "MenuScene": {
+            "game_title": "Freddy Bird",
+            "play": "Play",
+            "score": "Score",
+            "configuration": "Config",
+            "footer": "Thundera games 2025"
+        },
+        "PlayScene": {}
+    }
+}

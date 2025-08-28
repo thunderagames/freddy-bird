@@ -7,15 +7,17 @@ export class PreloadScene extends Phaser.Scene {
     }
 
     preload() {
-        let  fnt = new FontFace('title-fnt', 'url(assets/title-fnt.ttf')
-        fnt.load().then((lf: any) => {
-            document.fonts.add(lf)
-        });
-
-        fnt = new FontFace('score-fnt', 'url(assets/score.ttf')
-        fnt.load().then((lf: any) => {
-            document.fonts.add(lf)
-        });
+        const fkeys = BirdGameConfig.FONTS_KEYS
+        let fnts = [
+            { alias: fkeys.title_fnt, file: 'title-fnt.ttf' },
+            { alias: fkeys.score_fnt, file: 'score.ttf' },
+        ]
+        fnts.forEach(f => {
+            let fnt = new FontFace(f.alias, `url(assets/${f.file}`)
+            fnt.load().then((lf: any) => {
+                document.fonts.add(lf)
+            });
+        })
 
         this.add.text(this.scale.width / 2, this.scale.height / 2, 'Loading...', { fontFamily: 'menu-fnt' })
             .setOrigin(0.5)
@@ -29,7 +31,8 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image('clouds1-bkg', 'assets/clouds1.png')
         this.load.image('clouds2-bkg', 'assets/clouds2.png')
         this.load.image('tree', 'assets/tree4.png')
-
+        this.load.json('translations', 'assets/translations.json')
+        
         this.load.audio('menu-song', 'assets/RoadhouseBlues_out.ogg')
 
         this.load.on(Phaser.Loader.Events.COMPLETE, () => {

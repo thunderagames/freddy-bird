@@ -30,7 +30,7 @@ export default class BirdGame extends Phaser.Game {
                 mode: Phaser.Scale.ScaleModes.FIT
             },
             scene: BirdGameConfig.initScenes(),
-            title: 'Freddy Bird',
+            // title: 'Freddy Bird',
             dom: {
                 createContainer: true
             }
