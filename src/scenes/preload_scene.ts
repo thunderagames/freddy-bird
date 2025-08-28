@@ -19,21 +19,24 @@ export class PreloadScene extends Phaser.Scene {
             });
         })
 
+        const imgKeys = BirdGameConfig.IMAGE_KEYS
+
+
         this.add.text(this.scale.width / 2, this.scale.height / 2, 'Loading...', { fontFamily: 'menu-fnt' })
             .setOrigin(0.5)
-        this.load.image('sky', 'assets/sky.png')
-        this.load.spritesheet('bird', 'assets/birdSprite.png', {
+        this.load.image(imgKeys.sky, 'assets/sky.png')
+        this.load.spritesheet(imgKeys.bird, 'assets/birdSprite.png', {
             frameWidth: 16, frameHeight: 16
         })
-        this.load.image('pipe', 'assets/pipe.png')
-        this.load.image('pause', 'assets/pause.png')
-        this.load.image('back', 'assets/back.png')
-        this.load.image('clouds1-bkg', 'assets/clouds1.png')
-        this.load.image('clouds2-bkg', 'assets/clouds2.png')
-        this.load.image('tree', 'assets/tree4.png')
-        this.load.json('translations', 'assets/translations.json')
-        
-        this.load.audio('menu-song', 'assets/RoadhouseBlues_out.ogg')
+        this.load.image(imgKeys.pipe, 'assets/pipe.png')
+        this.load.image(imgKeys.pause, 'assets/pause.png')
+        this.load.image(imgKeys.back, 'assets/back.png')
+        this.load.image(imgKeys['clouds1-bkg'], 'assets/clouds1.png')
+        this.load.image(imgKeys['clouds2-bkg'], 'assets/clouds2.png')
+        this.load.image(imgKeys.tree, 'assets/tree4.png')
+        this.load.json(BirdGameConfig.JSON_KEYS.translations, 'assets/translations.json')
+
+        this.load.audio(BirdGameConfig.SOUND_KEYS.MainTheme, 'assets/RoadhouseBlues_out.ogg')
 
         this.load.on(Phaser.Loader.Events.COMPLETE, () => {
             this.scene.start(BirdGameConfig.SCENE_KEYS.MenuScene)

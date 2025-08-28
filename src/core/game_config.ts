@@ -68,7 +68,8 @@ export default class BirdGameConfig {
         'clouds1-bkg': 'clouds1-bkg',
         'clouds2-bkg': 'clouds2-bkg',
         'tree': 'tree',
-        'bird': 'bird'
+        'bird': 'bird',
+        'sky': 'sky'
     }
 
     static DIFICULTIES = {

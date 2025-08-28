@@ -9,7 +9,6 @@ export class MenuScene extends BaseScene {
     bird: Phaser.GameObjects.Sprite;
     flyingBird: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
     langManager: LangManager
-    animations: MenuSceneAnims
     txtKeys = BirdGameConfig.TRANSLATION_KEYS.MenuScene
 
     constructor(config: any) {
@@ -57,17 +56,21 @@ export class MenuScene extends BaseScene {
 
     setupMenuEvents(menuItem: { scene: string, text: string, textGO: Phaser.GameObjects.Text }) {
         const textGO = menuItem.textGO;
+        //enable events for items
         textGO.setInteractive()
 
+        //attach event for pointer over, little effect for the menu items
         textGO.on(Phaser.Input.Events.POINTER_OVER, () => {
             textGO.setScale(1.1)
             this.bird.play(BirdGameConfig.ANIMS_KEYS.eat)
         })
 
+        //attach event to undo the over effect on pointer out
         textGO.on(Phaser.Input.Events.POINTER_OUT, () => {
             textGO.setScale(1)
         })
 
+        //attach event to start the scene for the current menu item
         textGO.on(Phaser.Input.Events.POINTER_UP, () => {
             menuItem.scene && this.scene.start(menuItem.scene)
         })
@@ -139,5 +142,4 @@ export class MenuScene extends BaseScene {
             .setDepth(4)
         this.bkg1.setScale(1.5, 1.5)
     }
-
 }

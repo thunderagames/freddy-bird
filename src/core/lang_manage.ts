@@ -4,6 +4,7 @@ export class LangManager {
     user_config: GameUserConfiguration
     game: Phaser.Game;
     json_data: any
+    current_lang: 'en' | 'es' = 'en'
 
     constructor(scene: Phaser.Scene) {
         this.user_config = new GameUserConfiguration(scene.game)
