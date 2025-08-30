@@ -1,7 +1,10 @@
 import 'phaser'
 import BirdGameConfig from '../core/game_config'
+import { GameUserConfiguration } from '../core/game_user_configuration'
 
 export class PreloadScene extends Phaser.Scene {
+    user_configuration: GameUserConfiguration
+
     constructor() {
         super(BirdGameConfig.SCENE_KEYS.PreloadScene)
     }
@@ -35,6 +38,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image(imgKeys['clouds2-bkg'], 'assets/clouds2.png')
         this.load.image(imgKeys.tree, 'assets/tree4.png')
         this.load.json(BirdGameConfig.JSON_KEYS.translations, 'assets/translations.json')
+        this.load.json(BirdGameConfig.JSON_KEYS.default_config, 'assets/default_config.json')
 
         this.load.audio(BirdGameConfig.SOUND_KEYS.MainTheme, 'assets/RoadhouseBlues_out.ogg')
 
@@ -45,6 +49,12 @@ export class PreloadScene extends Phaser.Scene {
     }
 
     create() {
+        this.user_configuration = new GameUserConfiguration(this.game)
+        const default_config = this.cache.json.get(BirdGameConfig.JSON_KEYS.default_config)
+        //console.log(default_config)
+        this.user_configuration.set_config(BirdGameConfig.CONFIG_KEYS.music_is_enabled, default_config.music_is_enabled)
+        this.user_configuration.set_config(BirdGameConfig.CONFIG_KEYS.lang, default_config.lang)
+
         this.add.text(this.scale.width / 2, this.scale.height / 2, 'Loading...')
     }
 

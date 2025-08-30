@@ -1,9 +1,6 @@
 import BirdGameConfig from "../core/game_config";
-import { ScoreManager } from "./play_scene/score_manager";
 
 export class SaveScoreScene extends Phaser.Scene {
-
-    private _scores: { name: string, score: number }[] = []
 
     get scores(): { name: string, score: number }[] {
         return JSON.parse(localStorage.getItem('scores_list') ?? '[]')

@@ -38,7 +38,8 @@ export default class BirdGameConfig {
     }
 
     static JSON_KEYS = {
-        'translations': 'translations'
+        'translations': 'translations',
+        "default_config": "default_config"
     }
 
     static SCENE_KEYS = {

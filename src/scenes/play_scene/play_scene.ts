@@ -10,7 +10,6 @@ export class PlayScene extends BaseScene {
     pipes: Phaser.Physics.Arcade.Group;
     pipes_speed = 100
     isPaused = false
-    //pipeHorizontalDistance = 0
     flapVelocity = 300
     currentDifficulty = `${BirdGameConfig.DIFICULTIES.easy}`
     bird: any;
@@ -18,7 +17,6 @@ export class PlayScene extends BaseScene {
     initialTime: number;
     countDownText: Phaser.GameObjects.Text;
     timedEvent: Phaser.Time.TimerEvent;
-    bestScoreKey = 'bestScore'
     difficulties: {
         [key: string]: { pipeHorizontalDistanceRange: number[], pipeVerticalDistanceRange: number[] }
     } = {};
@@ -61,10 +59,10 @@ export class PlayScene extends BaseScene {
         this.createPause()
         this.handleInputs()
         this.listenToEvents()
-        if (!this.anims.exists('fly'))
+        if (!this.anims.exists(BirdGameConfig.ANIMS_KEYS.fly))
             this.anims.create({
-                key: 'fly',
-                frames: this.anims.generateFrameNumbers('bird', { start: 9, end: 15 }),
+                key: BirdGameConfig.ANIMS_KEYS.fly,
+                frames: this.anims.generateFrameNumbers(BirdGameConfig.IMAGE_KEYS.bird, { start: 9, end: 15 }),
                 frameRate: 8,
                 repeat: -1
             })
@@ -74,7 +72,7 @@ export class PlayScene extends BaseScene {
             .setOrigin(0, -0.95)
             .setDepth(0)
 
-        this.bird.play('fly');
+        this.bird.play(BirdGameConfig.ANIMS_KEYS.fly);
     }
 
     increaseDifficulty() {
@@ -137,11 +135,14 @@ export class PlayScene extends BaseScene {
 
     createPause() {
         this.isPaused = false;
-        const pauseButton = this.add.image(BirdGameConfig.WIDTH - 10, BirdGameConfig.HEIGHT - 10, 'pause')
+        const pauseButton = this.add.image(
+                BirdGameConfig.WIDTH - 10, 
+                BirdGameConfig.HEIGHT - 10, 
+                BirdGameConfig.IMAGE_KEYS.pause)
             .setInteractive()
             .setScale(3)
             .setOrigin(1)
-            .setDepth(6);
+            .setDepth(6)
 
         pauseButton.on(Phaser.Input.Events.POINTER_DOWN, () => {
             this.isPaused = true;

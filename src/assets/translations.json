@@ -1,12 +1,34 @@
 {
     "translations": {
-        "MenuScene": {
-            "game_title": "Freddy Bird",
-            "play": "Play",
-            "score": "Score",
-            "configuration": "Config",
-            "footer": "Thundera games 2025"
+        "en": {
+            "MenuScene": {
+                "game_title": "Freddy Bird",
+                "play": "Play",
+                "score": "Score",
+                "configuration": "Config",
+                "footer": "Thundera games 2025"
+            },
+            "ConfigScene": {
+                "title": "Configuration",
+                "music": "Music enabled",
+                "lang": "Language"
+            },
+            "PlayScene": {}
         },
-        "PlayScene": {}
+        "es": {
+            "MenuScene": {
+                "game_title": "Freddy Bird",
+                "play": "Jugar",
+                "score": "Puntos",
+                "configuration": "Config",
+                "footer": "Thundera games 2025"
+            },
+            "ConfigScene": {
+                "title": "Configuración",
+                "music": "Música activa",
+                "lang": "Idioma"
+            },
+            "PlayScene": {}
+        }
     }
 }
