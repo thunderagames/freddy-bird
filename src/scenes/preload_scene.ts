@@ -37,6 +37,7 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image(imgKeys['clouds1-bkg'], 'assets/clouds1.png')
         this.load.image(imgKeys['clouds2-bkg'], 'assets/clouds2.png')
         this.load.image(imgKeys.tree, 'assets/tree4.png')
+        this.load.image(imgKeys.star, 'assets/star.png')
         this.load.json(BirdGameConfig.JSON_KEYS.translations, 'assets/translations.json')
         this.load.json(BirdGameConfig.JSON_KEYS.default_config, 'assets/default_config.json')
 

@@ -37,7 +37,7 @@ export class ConfigScene extends BaseScene {
         let lang_setting = document.createElement('span');
         const lbl = document.createElement('label')
         lbl.innerText = `${this.getText('lang')}: `
-        lbl.style.fontFamily = "menu-fnt"
+        lbl.style.fontFamily = BirdGameConfig.FONTS_KEYS.menu_fnt
         lbl.setAttribute('for', 'set_lang')
 
         const cl = new GameUserConfiguration(this.game).get_config()[BirdGameConfig.CONFIG_KEYS.lang]
@@ -101,7 +101,7 @@ export class ConfigScene extends BaseScene {
 
 
         const label = document.createElement('label')
-        label.style.fontFamily = "menu-fnt"
+        label.style.fontFamily = BirdGameConfig.FONTS_KEYS.menu_fnt
         label.style.verticalAlign = "super"
         label.style.margin = "0 10px 0 0"
         label.setAttribute('for', 'enable_music')

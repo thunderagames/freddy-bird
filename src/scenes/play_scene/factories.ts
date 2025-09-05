@@ -10,6 +10,7 @@ export class BirdGameFactories {
             brd.setOrigin(0)
                 .setScale(3)
                 .setFlipX(true)
+                .setImmovable(true)
             brd.setDepth(15)
             brd.setBodySize(brd.width, brd.height - 8)
             brd.body.gravity.y = 600

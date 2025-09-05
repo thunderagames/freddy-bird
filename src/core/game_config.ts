@@ -34,7 +34,8 @@ export default class BirdGameConfig {
 
     static FONTS_KEYS = {
         'title_fnt': 'title-fnt',
-        'score_fnt': 'score-fnt'
+        'score_fnt': 'score-fnt',
+        'menu_fnt': 'menu-fnt'
     }
 
     static JSON_KEYS = {
@@ -70,7 +71,8 @@ export default class BirdGameConfig {
         'clouds2-bkg': 'clouds2-bkg',
         'tree': 'tree',
         'bird': 'bird',
-        'sky': 'sky'
+        'sky': 'sky',
+        'star':'star'
     }
 
     static DIFICULTIES = {

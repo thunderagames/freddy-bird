@@ -73,6 +73,12 @@ export class PlayScene extends BaseScene {
             .setDepth(0)
 
         this.bird.play(BirdGameConfig.ANIMS_KEYS.fly);
+
+        this.spawnStars()
+        this.physics.add.collider(this.bird, this.stars, (a:any,b:any) => {
+            b.x = -50
+            
+        })
     }
 
     increaseDifficulty() {
@@ -87,7 +93,6 @@ export class PlayScene extends BaseScene {
         return BirdGameConfig.DIFICULTIES.easy;
     }
 
-
     update() {
         this.checkGameStatus();
         this.recyclePipes();
@@ -96,6 +101,18 @@ export class PlayScene extends BaseScene {
 
         if (this.pipes_speed < 500)
             this.pipes_speed += 0.025
+
+        let stars = this.stars.getChildren() ?? []
+        stars.find((star: any) => star.x < 0)
+        const rand = Phaser.Math.Between(0, 50)
+        if (rand == 5) {
+            let s: any = stars.find((star: any) => star.x < 0)
+            if (s) {
+                s.x = this.scale.width + 20
+                s.y = Phaser.Math.Between(10, this.scale.height - 10)
+                s.setVelocityX(Phaser.Math.Between(50, 100) * -1)
+            }
+        }
     }
 
     checkGameStatus() {
@@ -136,9 +153,9 @@ export class PlayScene extends BaseScene {
     createPause() {
         this.isPaused = false;
         const pauseButton = this.add.image(
-                BirdGameConfig.WIDTH - 10, 
-                BirdGameConfig.HEIGHT - 10, 
-                BirdGameConfig.IMAGE_KEYS.pause)
+            BirdGameConfig.WIDTH - 10,
+            BirdGameConfig.HEIGHT - 10,
+            BirdGameConfig.IMAGE_KEYS.pause)
             .setInteractive()
             .setScale(3)
             .setOrigin(1)
@@ -188,5 +205,25 @@ export class PlayScene extends BaseScene {
     flap() {
         if (this.isPaused) { return; }
         this.bird.body.velocity.y = -this.flapVelocity;
+    }
+    stars: Phaser.Physics.Arcade.Group;
+    spawnStars(): void {
+        this.stars = this.physics.add.group();
+
+        for (let i = 0; i < 4; i++) {
+            this.stars.add(
+                this.physics.add
+                    .sprite(-50, Phaser.Math.Between(10, this.scale.height - 10), 'star')
+                    .setOrigin(0)
+                    
+
+            )
+        }
+
+        this.stars.getChildren().forEach((x: any) => {
+            x.setVelocityX(Phaser.Math.Between(50, 100) * -1)
+            x.setScale(1.5)
+            x.setImmovable(true)
+        })
     }
 }
